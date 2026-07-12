@@ -1,0 +1,118 @@
+extends ../layout
+
+block content
+  .d-flex.justify-content-between.align-items-center.mb-4
+    div
+      h1.h3.mb-0.text-gray-800
+        i.fa-solid.fa-users.me-2.text-primary
+        | Employee Master
+      p.text-muted Create, update, and manage employee records.
+    button.btn.btn-primary(data-bs-toggle="modal" data-bs-target="#addEmployeeModal")
+      i.fa-solid.fa-user-plus.me-2
+      | Add Employee
+
+  //- Filters Card
+  .card.shadow-sm.mb-4
+    .card-body.py-3
+      .row.align-items-center
+        .col-md-4.col-lg-3
+          label.form-label.mb-1.text-xs.text-uppercase.fw-bold.text-muted(for="employee-status-filter")
+            i.fa-solid.fa-filter.me-1
+            | Filter by Status
+          select.form-select#employee-status-filter
+            option(value="") All Employees
+            option(value="Active" selected) Active
+            option(value="Inactive") Inactive
+
+  //- Employees Table Card
+  .card.shadow-sm
+    .card-body
+      .table-responsive
+        table.table.table-striped.table-hover.align-middle.w-100#employees-table
+          thead
+            tr
+              th Code
+              th Name
+              th Email
+              th Branch
+              th Status
+              th.text-center Actions
+          tbody
+
+  //- Add Employee Modal
+  .modal.fade#addEmployeeModal(tabindex="-1" aria-labelledby="addEmployeeModalLabel" aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-header.bg-primary.text-white
+          h5.modal-title#addEmployeeModalLabel
+            i.fa-solid.fa-user-plus.me-2
+            | Add New Employee
+          button.btn-close.btn-close-white(type="button" data-bs-close="modal" aria-label="Close")
+        form#add-employee-form
+          .modal-body
+            .mb-3
+              label.form-label(for="add-employee-code") Employee Code (Optional)
+              input.form-label-placeholder.form-control#add-employee-code(type="text" name="employeeCode" placeholder="e.g. EMP-001 (auto-generated if empty)")
+            .mb-3
+              label.form-label(for="add-name") Full Name *
+              input.form-control#add-name(type="text" name="name" required placeholder="John Doe")
+            .mb-3
+              label.form-label(for="add-email") Email Address *
+              input.form-control#add-email(type="email" name="email" required placeholder="john.doe@company.com")
+            .mb-3
+              label.form-label(for="add-branch") Office Branch *
+              select.form-select#add-branch(name="branch" required)
+                option(value="" disabled selected) Select Branch
+                option(value="Coimbatore") Coimbatore
+                option(value="Bangalore") Bangalore
+                option(value="Chennai") Chennai
+                option(value="Tiruppur") Tiruppur
+            .mb-3
+              label.form-label(for="add-status") Status
+              select.form-select#add-status(name="status")
+                option(value="Active" selected) Active
+                option(value="Inactive") Inactive
+          .modal-footer
+            button.btn.btn-secondary(type="button" data-bs-dismiss="modal") Cancel
+            button.btn.btn-primary(type="submit")
+              i.fa-solid.fa-floppy-disk.me-1
+              | Save Employee
+
+  //- Edit Employee Modal
+  .modal.fade#editEmployeeModal(tabindex="-1" aria-labelledby="editEmployeeModalLabel" aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-header.bg-warning.text-dark
+          h5.modal-title#editEmployeeModalLabel
+            i.fa-solid.fa-user-pen.me-2
+            | Edit Employee Details
+          button.btn-close(type="button" data-bs-dismiss="modal" aria-label="Close")
+        form#edit-employee-form
+          input#edit-id(type="hidden" name="id")
+          .modal-body
+            .mb-3
+              label.form-label(for="edit-employee-code") Employee Code
+              input.form-control#edit-employee-code(type="text" name="employeeCode" readonly)
+            .mb-3
+              label.form-label(for="edit-name") Full Name *
+              input.form-control#edit-name(type="text" name="name" required)
+            .mb-3
+              label.form-label(for="edit-email") Email Address *
+              input.form-control#edit-email(type="email" name="email" required)
+            .mb-3
+              label.form-label(for="edit-branch") Office Branch *
+              select.form-select#edit-branch(name="branch" required)
+                option(value="Coimbatore") Coimbatore
+                option(value="Bangalore") Bangalore
+                option(value="Chennai") Chennai
+                option(value="Tiruppur") Tiruppur
+            .mb-3
+              label.form-label(for="edit-status") Status
+              select.form-select#edit-status(name="status")
+                option(value="Active") Active
+                option(value="Inactive") Inactive
+          .modal-footer
+            button.btn.btn-secondary(type="button" data-bs-dismiss="modal") Cancel
+            button.btn.btn-warning(type="submit")
+              i.fa-solid.fa-check.me-1
+              | Update Details

@@ -1,0 +1,33 @@
+extends ../layout
+
+block content
+  .row.justify-content-center
+    .col-lg-8.col-xl-6
+      .card.shadow-sm
+        .card-header.bg-primary.text-white.py-3
+          h5.m-0.font-weight-bold
+            i.fa-solid.fa-arrow-right-from-bracket.me-2
+            | Issue Asset to Employee
+        .card-body.p-4
+          form#issue-asset-form
+            .mb-4
+              label.form-label.fw-bold(for="issue-asset-select") 1. Select Asset (In Stock only) *
+              select.form-select.form-select-lg#issue-asset-select(name="assetId" required)
+                option(value="" disabled selected) Loading available stock...
+              .form-text.text-muted Select the hardware unit that you want to check out.
+
+            .mb-4
+              label.form-label.fw-bold(for="issue-employee-select") 2. Select Employee (Active only) *
+              select.form-select.form-select-lg#issue-employee-select(name="employeeId" required)
+                option(value="" disabled selected) Loading active staff...
+              .form-text.text-muted Select the active employee who will receive this asset.
+
+            .mb-4
+              label.form-label.fw-bold(for="issue-notes") 3. Allocation Notes
+              textarea.form-control#issue-notes(name="notes" rows="3" placeholder="Describe the purpose, condition, or special terms of this allocation...")
+
+            .d-grid.gap-2.d-md-flex.justify-content-md-end
+              a.btn.btn-outline-secondary.me-md-2(href="/") Cancel
+              button.btn.btn-primary.btn-lg(type="submit")
+                i.fa-solid.fa-handshake.me-2
+                | Allocate Asset

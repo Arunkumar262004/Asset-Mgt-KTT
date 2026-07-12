@@ -1,0 +1,38 @@
+extends ../layout
+
+block content
+  .row.justify-content-center
+    .col-lg-8.col-xl-6
+      .card.shadow-sm
+        .card-header.bg-success.text-white.py-3
+          h5.m-0.font-weight-bold
+            i.fa-solid.fa-arrow-right-to-bracket.me-2
+            | Return Asset to Stock
+        .card-body.p-4
+          form#return-asset-form
+            .mb-4
+              label.form-label.fw-bold(for="return-asset-select") 1. Select Issued Asset *
+              select.form-select.form-select-lg#return-asset-select(name="assetId" required)
+                option(value="" disabled selected) Loading checked-out assets...
+              .form-text.text-muted Lists assets currently allocated to employees.
+
+            .mb-4
+              label.form-label.fw-bold(for="return-reason") 2. Reason for Return *
+              select.form-select.form-select-lg#return-reason(name="reason" required)
+                option(value="" disabled selected) Select a reason
+                option(value="upgrade") Hardware Upgrade
+                option(value="repair") Technical Repair / Maintenance
+                option(value="resignation") Employee Resignation
+                option(value="project-end") Project Termination
+                option(value="other") Other Reason
+              .form-text.text-muted Select why this hardware is returning to storage.
+
+            .mb-4
+              label.form-label.fw-bold(for="return-notes") 3. Return Notes / Condition
+              textarea.form-control#return-notes(name="notes" rows="3" placeholder="Note physical condition, technical errors, or details about the return...")
+
+            .d-grid.gap-2.d-md-flex.justify-content-md-end
+              a.btn.btn-outline-secondary.me-md-2(href="/") Cancel
+              button.btn.btn-success.btn-lg(type="submit")
+                i.fa-solid.fa-arrow-right-to-bracket.me-2
+                | Return to Stock

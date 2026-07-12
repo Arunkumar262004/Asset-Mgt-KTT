@@ -1,0 +1,72 @@
+extends ../layout
+
+block content
+  .d-flex.justify-content-between.align-items-center.mb-4
+    div
+      h1.h3.mb-0.text-gray-800
+        i.fa-solid.fa-tags.me-2.text-primary
+        | Asset Category Master
+      p.text-muted Define hardware types (e.g. Laptop, Mobile Phone, Screw Driver, Drill Machine).
+    button.btn.btn-primary(data-bs-toggle="modal" data-bs-target="#addCategoryModal")
+      i.fa-solid.fa-plus.me-2
+      | Add Category
+
+  //- Categories Table Card
+  .card.shadow-sm
+    .card-body
+      .table-responsive
+        table.table.table-striped.table-hover.align-middle.w-100#categories-table
+          thead
+            tr
+              th ID
+              th Category Name
+              th Description
+              th.text-center Actions
+          tbody
+
+  //- Add Category Modal
+  .modal.fade#addCategoryModal(tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-header.bg-primary.text-white
+          h5.modal-title#addCategoryModalLabel
+            i.fa-solid.fa-tag.me-2
+            | Add New Category
+          button.btn-close.btn-close-white(type="button" data-bs-close="modal" aria-label="Close")
+        form#add-category-form
+          .modal-body
+            .mb-3
+              label.form-label(for="add-category-name") Category Name *
+              input.form-control#add-category-name(type="text" name="name" required placeholder="e.g. Mobile Phone, Drill Machine")
+            .mb-3
+              label.form-label(for="add-category-desc") Description
+              textarea.form-control#add-category-desc(name="description" rows="3" placeholder="Optional category description...")
+          .modal-footer
+            button.btn.btn-secondary(type="button" data-bs-dismiss="modal") Cancel
+            button.btn.btn-primary(type="submit")
+              i.fa-solid.fa-floppy-disk.me-1
+              | Save Category
+
+  //- Edit Category Modal
+  .modal.fade#editCategoryModal(tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-header.bg-warning.text-dark
+          h5.modal-title#editCategoryModalLabel
+            i.fa-solid.fa-pen-to-square.me-2
+            | Edit Category Details
+          button.btn-close(type="button" data-bs-dismiss="modal" aria-label="Close")
+        form#edit-category-form
+          input#edit-category-id(type="hidden" name="id")
+          .modal-body
+            .mb-3
+              label.form-label(for="edit-category-name") Category Name *
+              input.form-control#edit-category-name(type="text" name="name" required)
+            .mb-3
+              label.form-label(for="edit-category-desc") Description
+              textarea.form-control#edit-category-desc(name="description" rows="3")
+          .modal-footer
+            button.btn.btn-secondary(type="button" data-bs-dismiss="modal") Cancel
+            button.btn.btn-warning(type="submit")
+              i.fa-solid.fa-check.me-1
+              | Update Details

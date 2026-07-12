@@ -1,0 +1,75 @@
+extends layout
+
+block content
+  .row.mb-4
+    .col-12
+      h1.h3.mb-0.text-gray-800
+        i.fa-solid.fa-chart-pie.me-2.text-primary
+        | Stock View 
+      p.text-muted Active overview of all assets currently in stock and ready to be issued.
+
+  //- Stats Row
+  .row.mb-4
+    .col-md-6.col-lg-3
+      .card.border-start.border-primary.border-4.shadow-sm.h-100.py-2
+        .card-body
+          .row.no-gutters.align-items-center
+            .col.mr-2
+              .text-xs.font-weight-bold.text-primary.text-uppercase.mb-1 In Stock Count
+              .h5.mb-0.font-weight-bold.text-gray-800#stat-total-count --
+            .col-auto
+              i.fa-solid.fa-warehouse.fa-2x.text-gray-300
+    .col-md-6.col-lg-3
+      .card.border-start.border-success.border-4.shadow-sm.h-100.py-2
+        .card-body
+          .row.no-gutters.align-items-center
+            .col.mr-2
+              .text-xs.font-weight-bold.text-success.text-uppercase.mb-1 Total Value (In Stock)
+              .h5.mb-0.font-weight-bold.text-gray-800#stat-total-value ₹0.00
+            .col-auto
+              i.fa-solid.fa-indian-rupee-sign.fa-2x.text-gray-300
+
+  .row.mb-4
+    //- Branch Summary Table
+    .col-lg-5
+      .card.shadow-sm.mb-4
+        .card-header.bg-white.py-3
+          h6.m-0.font-weight-bold.text-primary
+            i.fa-solid.fa-map-pin.me-2
+            | Summary by Branch
+        .card-body
+          .table-responsive
+            table.table.table-hover.align-middle#branch-summary-table
+              thead.table-light
+                tr
+                  th Branch Name
+                  th.text-center Assets count
+                  th.text-end Value
+              tbody
+                tr
+                  td.text-center(colspan="3") Loading branch summary...
+              tfoot.table-group-divider
+                tr.fw-bold
+                  td Total
+                  td.text-center#summary-grand-count 0
+                  td.text-end#summary-grand-value ₹0.00
+
+    //- Detailed Table
+    .col-lg-7
+      .card.shadow-sm
+        .card-header.bg-white.py-3
+          h6.m-0.font-weight-bold.text-primary
+            i.fa-solid.fa-list-check.me-2
+            | Available Stock Details
+        .card-body
+          .table-responsive
+            table.table.table-striped.table-hover.align-middle.w-100#stock-details-table
+              thead
+                tr
+                  th Code
+                  th Serial Number
+                  th Category
+                  th Make/Model
+                  th.text-end Value
+                  th Branch
+              tbody

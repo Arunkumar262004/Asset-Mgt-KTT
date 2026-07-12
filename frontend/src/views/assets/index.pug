@@ -1,0 +1,140 @@
+extends ../layout
+
+block content
+  .d-flex.justify-content-between.align-items-center.mb-4
+    div
+      h1.h3.mb-0.text-gray-800
+        i.fa-solid.fa-laptop.me-2.text-primary
+        | Asset Master
+      p.text-muted Register, modify, and track physical assets.
+    button.btn.btn-primary(data-bs-toggle="modal" data-bs-target="#addAssetModal")
+      i.fa-solid.fa-plus.me-2
+      | Add Asset
+
+  //- Filters Card
+  .card.shadow-sm.mb-4
+    .card-body.py-3
+      .row.align-items-center
+        .col-md-4.col-lg-3
+          label.form-label.mb-1.text-xs.text-uppercase.fw-bold.text-muted(for="asset-category-filter")
+            i.fa-solid.fa-filter.me-1
+            | Filter by Category
+          select.form-select#asset-category-filter
+            option(value="") All Categories
+
+  //- Assets Table Card
+  .card.shadow-sm
+    .card-body
+      .table-responsive
+        table.table.table-striped.table-hover.align-middle.w-100#assets-table
+          thead
+            tr
+              th Code
+              th Serial Number
+              th Category
+              th Make/Model
+              th.text-end Value
+              th Branch
+              th Status
+              th Holder
+              th.text-center Actions
+          tbody
+
+  //- Add Asset Modal
+  .modal.fade#addAssetModal(tabindex="-1" aria-labelledby="addAssetModalLabel" aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-header.bg-primary.text-white
+          h5.modal-title#addAssetModalLabel
+            i.fa-solid.fa-circle-plus.me-2
+            | Add New Asset
+          button.btn-close.btn-close-white(type="button" data-bs-close="modal" aria-label="Close")
+        form#add-asset-form
+          .modal-body
+            .row
+              .col-md-6.mb-3
+                label.form-label(for="add-asset-code") Asset Code *
+                input.form-control#add-asset-code(type="text" name="assetCode" required placeholder="e.g. AST-001")
+              .col-md-6.mb-3
+                label.form-label(for="add-serial") Serial Number *
+                input.form-control#add-serial(type="text" name="serialNumber" required placeholder="e.g. SN1234567")
+            .mb-3
+              label.form-label(for="add-asset-category") Asset Category *
+              select.form-select.asset-category-select#add-asset-category(name="categoryId" required)
+                option(value="" disabled selected) Select Category
+            .row
+              .col-md-6.mb-3
+                label.form-label(for="add-make") Make *
+                input.form-control#add-make(type="text" name="make" required placeholder="Dell, Apple, Samsung")
+              .col-md-6.mb-3
+                label.form-label(for="add-model") Model *
+                input.form-control#add-model(type="text" name="model" required placeholder="Latitude 5420, MacBook Pro")
+            .row
+              .col-md-6.mb-3
+                label.form-label(for="add-purchase-date") Purchase Date *
+                input.form-control#add-purchase-date(type="date" name="purchaseDate" required)
+              .col-md-6.mb-3
+                label.form-label(for="add-value") Value (₹) *
+                input.form-control#add-value(type="number" step="0.01" min="0" name="value" required placeholder="999.99")
+            .mb-3
+              label.form-label(for="add-asset-branch") Warehouse/Office Branch *
+              select.form-select#add-asset-branch(name="branch" required)
+                option(value="" disabled selected) Select Location
+                option(value="Coimbatore") Coimbatore
+                option(value="Bangalore") Bangalore
+                option(value="Chennai") Chennai
+                option(value="Tiruppur") Tiruppur
+          .modal-footer
+            button.btn.btn-secondary(type="button" data-bs-dismiss="modal") Cancel
+            button.btn.btn-primary(type="submit")
+              i.fa-solid.fa-floppy-disk.me-1
+              | Save Asset
+
+  //- Edit Asset Modal
+  .modal.fade#editAssetModal(tabindex="-1" aria-labelledby="editAssetModalLabel" aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-header.bg-warning.text-dark
+          h5.modal-title#editAssetModalLabel
+            i.fa-solid.fa-pen-to-square.me-2
+            | Edit Asset Details
+          button.btn-close(type="button" data-bs-dismiss="modal" aria-label="Close")
+        form#edit-asset-form
+          input#edit-asset-id(type="hidden" name="id")
+          .modal-body
+            .row
+              .col-md-6.mb-3
+                label.form-label(for="edit-asset-code") Asset Code *
+                input.form-control#edit-asset-code(type="text" name="assetCode" required)
+              .col-md-6.mb-3
+                label.form-label(for="edit-serial") Serial Number *
+                input.form-control#edit-serial(type="text" name="serialNumber" required)
+            .mb-3
+              label.form-label(for="edit-asset-category") Asset Category *
+              select.form-select.asset-category-select#edit-asset-category(name="categoryId" required)
+            .row
+              .col-md-6.mb-3
+                label.form-label(for="edit-make") Make *
+                input.form-control#edit-make(type="text" name="make" required)
+              .col-md-6.mb-3
+                label.form-label(for="edit-model") Model *
+                input.form-control#edit-model(type="text" name="model" required)
+            .row
+              .col-md-6.mb-3
+                label.form-label(for="edit-purchase-date") Purchase Date *
+                input.form-control#edit-purchase-date(type="date" name="purchaseDate" required)
+              .col-md-6.mb-3
+                label.form-label(for="edit-value") Value (₹) *
+                input.form-control#edit-value(type="number" step="0.01" min="0" name="value" required)
+            .mb-3
+              label.form-label(for="edit-asset-branch") Warehouse/Office Branch *
+              select.form-select#edit-asset-branch(name="branch" required)
+                option(value="Coimbatore") Coimbatore
+                option(value="Bangalore") Bangalore
+                option(value="Chennai") Chennai
+                option(value="Tiruppur") Tiruppur
+          .modal-footer
+            button.btn.btn-secondary(type="button" data-bs-dismiss="modal") Cancel
+            button.btn.btn-warning(type="submit")
+              i.fa-solid.fa-check.me-1
+              | Update Details

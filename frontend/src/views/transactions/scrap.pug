@@ -1,0 +1,44 @@
+extends ../layout
+
+block content
+  .row.justify-content-center
+    .col-lg-8.col-xl-6
+      .card.shadow-sm
+        .card-header.bg-danger.text-white.py-3
+          h5.m-0.font-weight-bold
+            i.fa-solid.fa-trash-can.me-2
+            | Scrap / Retract Asset
+        .card-body.p-4
+          .alert.alert-warning.mb-4
+            h6.alert-heading.fw-bold
+              i.fa-solid.fa-triangle-exclamation.me-1
+              | Important Warning
+            | Marking an asset as **Scraped/Obsolete** is a terminal operational state. The asset will immediately be hidden from all active stock lists, employee assignment panels, and catalogs. It will only be visible in reports and asset audit history lists.
+          
+          form#scrap-asset-form
+            .mb-4
+              label.form-label.fw-bold(for="scrap-asset-select") 1. Select Asset to Scrap *
+              select.form-select.form-select-lg#scrap-asset-select(name="assetId" required)
+                option(value="" disabled selected) Loading assets...
+              .form-text.text-muted Lists all registered assets (In Stock & Issued).
+
+            .mb-4
+              label.form-label.fw-bold(for="scrap-reason") 2. Reason for Scrap *
+              select.form-select.form-select-lg#scrap-reason(name="reason" required)
+                option(value="" disabled selected) Select a reason
+                option(value="obsolete") Obsolete technology / End of life
+                option(value="damaged beyond repair") Damaged beyond repair
+                option(value="lost") Lost / Stolen
+                option(value="sold") Sold / Donated
+                option(value="other") Other Reason
+              .form-text.text-muted Select why this hardware is being retired.
+
+            .mb-4
+              label.form-label.fw-bold(for="scrap-notes") 3. Scrap Notes
+              textarea.form-control#scrap-notes(name="notes" rows="3" placeholder="Notes...")
+
+            .d-grid.gap-2.d-md-flex.justify-content-md-end
+              a.btn.btn-outline-secondary.me-md-2(href="/") Cancel
+              button.btn.btn-danger.btn-lg(type="submit")
+                i.fa-solid.fa-trash-can.me-2
+                | Retract & Scrap
