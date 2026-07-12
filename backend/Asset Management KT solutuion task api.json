@@ -1,0 +1,484 @@
+{
+  "info": {
+    "_postman_id": "4a73d82a-e24e-4b68-9c60-bf862da10cc3",
+    "name": "Asset Management KT solutuion task api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Employees",
+      "item": [
+        {
+          "name": "Get All Employees",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseurl}}/api/employees",
+              "host": ["{{baseurl}}"],
+              "path": ["api", "employees"],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "Active",
+                  "description": "Optional filter: Active or Inactive",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Employee Detail",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseurl}}/api/employees/1",
+              "host": ["{{baseurl}}"],
+              "path": ["api", "employees", "1"]
+            }
+          }
+        },
+        {
+          "name": "Create Employee",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employeeCode\": \"EMP-9021\",\n  \"name\": \"Alice Vance\",\n  \"email\": \"alice@example.com\",\n  \"branch\": \"Coimbatore\",\n  \"status\": \"Active\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/api/employees",
+              "host": ["{{baseurl}}"],
+              "path": ["api", "employees"]
+            }
+          }
+        },
+        {
+          "name": "Update Employee",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alice Vance (Updated)\",\n  \"email\": \"alice.vance@example.com\",\n  \"branch\": \"Chennai\",\n  \"status\": \"Active\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/api/employees/1",
+              "host": ["{{baseurl}}"],
+              "path": ["api", "employees", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseurl}}/api/categories",
+              "host": ["{{baseurl}}"],
+              "path": ["api", "categories"]
+            }
+          }
+        },
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Laptop\",\n  \"description\": \"Workstation laptops like MacBook, Dell XPS, etc.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/api/categories",
+              "host": ["{{baseurl}}"],
+              "path": ["api", "categories"]
+            }
+          }
+        },
+        {
+          "name": "Update Category",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Laptop Workstations\",\n  \"description\": \"Updated description for laptop categories.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/api/categories/1",
+              "host": ["{{baseurl}}"],
+              "path": ["api", "categories", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Assets",
+      "item": [
+        {
+          "name": "Get All Assets",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseurl}}/api/assets",
+              "host": ["{{baseurl}}"],
+              "path": ["api", "assets"],
+              "query": [
+                {
+                  "key": "categoryId",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "MacBook",
+                  "disabled": true
+                },
+                {
+                  "key": "includeScraped",
+                  "value": "true",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Assets In Stock",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseurl}}/api/assets/stock",
+              "host": ["{{baseurl}}"],
+              "path": ["api", "assets", "stock"]
+            }
+          }
+        },
+        {
+          "name": "Get Branch Stock Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseurl}}/api/assets/stats",
+              "host": ["{{baseurl}}"],
+              "path": ["api", "assets", "stats"]
+            }
+          }
+        },
+        {
+          "name": "Get Asset Detail",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseurl}}/api/assets/1",
+              "host": ["{{baseurl}}"],
+              "path": ["api", "assets", "1"]
+            }
+          }
+        },
+        {
+          "name": "Create Asset",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assetCode\": \"AST-LP-001\",\n  \"serialNumber\": \"SN-M1-MAC-98213\",\n  \"categoryId\": 1,\n  \"make\": \"Apple\",\n  \"model\": \"MacBook Air M1\",\n  \"purchaseDate\": \"2026-01-10\",\n  \"value\": 85000.00,\n  \"branch\": \"Coimbatore\",\n  \"status\": \"In Stock\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/api/assets",
+              "host": ["{{baseurl}}"],
+              "path": ["api", "assets"]
+            }
+          }
+        },
+        {
+          "name": "Update Asset",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"make\": \"Apple\",\n  \"model\": \"MacBook Air M1 (Silver)\",\n  \"categoryId\": 1,\n  \"value\": 82000.00,\n  \"branch\": \"Coimbatore\",\n  \"status\": \"In Stock\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/api/assets/1",
+              "host": ["{{baseurl}}"],
+              "path": ["api", "assets", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transactions",
+      "item": [
+        {
+          "name": "Issue Asset to Employee",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assetId\": 1,\n  \"employeeId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/api/transactions/issue",
+              "host": ["{{baseurl}}"],
+              "path": ["api", "transactions", "issue"]
+            }
+          }
+        },
+        {
+          "name": "Return Asset from Employee",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assetId\": 1,\n  \"returnReason\": \"upgrade\",\n  \"comments\": \"Employee upgraded to MacBook Pro\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/api/transactions/return",
+              "host": ["{{baseurl}}"],
+              "path": ["api", "transactions", "return"]
+            }
+          }
+        },
+        {
+          "name": "Scrap Asset (Mark Obsolete)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assetId\": 1,\n  \"scrapReason\": \"damaged\",\n  \"comments\": \"Liquid damage on motherboard, repair costs exceed asset value.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/api/transactions/scrap",
+              "host": ["{{baseurl}}"],
+              "path": ["api", "transactions", "scrap"]
+            }
+          }
+        },
+        {
+          "name": "Get Asset Movement History",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseurl}}/api/transactions/history/1",
+              "host": ["{{baseurl}}"],
+              "path": ["api", "transactions", "history", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get All Transaction Logs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseurl}}/api/transactions/logs",
+              "host": ["{{baseurl}}"],
+              "path": ["api", "transactions", "logs"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseurl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ]
+}
